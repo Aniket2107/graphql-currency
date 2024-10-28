@@ -14,7 +14,6 @@ const typeDefs = gql`
 
   type WalletUpdatePayload {
     userId: ID!
-    wallets: [Wallet!]!
     totalAmount: Float!
     localCurrency: String!
   }

@@ -1,7 +1,8 @@
 const redis = require("redis");
+const config = require("../../config/config");
 
 const client = redis.createClient({
-  url: "redis://localhost:6379", 
+  url: config.redisUri,
 });
 
 client.on("error", (err) => console.error("Redis Client Error", err));

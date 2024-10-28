@@ -26,6 +26,10 @@ async function transferFunds(
   targetAmount
 ) {
   try {
+    // const session = await mongoose.startSession(); // MongoDB requires replica-set for transaction so commented this code for now
+    // session.startTransaction();
+    // transactions ensures the atomicity and consistency
+
     const [senderWallet, recipientWallet] = await Promise.all([
       Wallet.findOne({ userId: senderId, currency: fromCurrency }),
       Wallet.findOne({ userId: recipientId, currency: toCurrency }),
@@ -87,7 +91,13 @@ async function transferFunds(
       message: "Transfer successful",
       transaction: transaction[0],
     };
+
+    // await session.commitTransaction()
+    // session.endSession();
   } catch (error) {
+    // await session.abortTransaction();
+    // session.endSession()
+
     console.error("Transfer failed:", error);
 
     return {

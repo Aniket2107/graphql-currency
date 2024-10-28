@@ -43,10 +43,12 @@ const Subscription = {
 
         if (payload.wallet_update.userId !== userId) return false;
 
-        const { totalValue } = await getTotalValue(userId, localCurrency);
+        const totalValue = await getTotalValue(userId, localCurrency);
 
         payload.wallet_update.totalAmount = totalValue;
         payload.wallet_update.localCurrency = localCurrency;
+
+        console.log(payload);
 
         return true;
       }
