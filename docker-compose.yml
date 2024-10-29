@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  dbmongo:
+    image: mongo:latest
+    container_name: dbmongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  graphql-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: graphql-app
+    ports:
+      - "4000:4000"
+    depends_on:
+      - redis
+      - dbmongo
+    environment:
+      MONGODB_URI: mongodb://dbmongo:27017/currency
+      REDIS_URI: redis://redis:6379
+      ALPHA_VANTAGE_API_KEY: NRHA8QXM0TFCZ3JB
+      PORT: 4000
+
+volumes:
+  mongo-data:
+    driver: local

@@ -8,6 +8,7 @@ const typeDefs = gql`
   }
 
   type Wallet {
+    id: ID!
     currency: String!
     balance: Float!
   }
