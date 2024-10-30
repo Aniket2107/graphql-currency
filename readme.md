@@ -9,13 +9,21 @@ npm install
 npm start
 ```
 
+2. Using Docker 
+```
+docker-compose up
+```
+
 ### Testing
 
-For testing we have **tests** folder inside src to run test cases run the following command
+All tests are located in the **'__ tests __'** folder inside the `src` directory. To run the test cases, use the following command:
 
 ```
 npm run test
 ```
+
+### GraphQL Documentation
+All Queries, Mutations, and Subscriptions are documented within the GraphQL playground. Navigate to http://localhost:4000/graphql in your browser to explore the API. The playground will display the available operations, required arguments, and expected responses, making it easy to understand and test each endpoint.
 
 ### Environment Variables
 
